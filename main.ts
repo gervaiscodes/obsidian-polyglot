@@ -39,7 +39,7 @@ export default class Polyglot extends Plugin {
 		});
 
 
-		this.addRibbonIcon('pencil', 'Polyglot Translate', (evt: MouseEvent) => {
+		this.addRibbonIcon('languages', 'Polyglot Translate', (evt: MouseEvent) => {
 			const view = this.app.workspace.getActiveViewOfType(MarkdownView)
 
 			if (view) {
