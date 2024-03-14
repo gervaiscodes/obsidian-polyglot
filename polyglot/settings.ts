@@ -6,6 +6,10 @@ export interface PolyglotSettings {
 	pollyEngine: string
 	speechPrepend: string
 	speechAppend: string
+	translateSource: string
+	translateTarget: string
+	translatePrepend: string
+	translateAppend: string
 }
 
 export const DEFAULT_SETTINGS: PolyglotSettings = {
@@ -15,6 +19,10 @@ export const DEFAULT_SETTINGS: PolyglotSettings = {
 	voiceId: 'Joanna',
 	pollyEngine: 'standard',
 	speechPrepend: '',
-	speechAppend: ''
+	speechAppend: '',
+	translateSource: 'en',
+	translateTarget: 'fr',
+	translatePrepend: '',
+	translateAppend: ''
 }
 

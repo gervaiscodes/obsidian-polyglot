@@ -5,12 +5,15 @@ import { Editor, Notice } from 'obsidian'
 import { PolyglotSettings } from './settings'
 
 export default async function textToSpeech(editor: Editor, settings: PolyglotSettings, pollyClient: PollyClient) {
-	const selectedText = editor.getSelection()
+	let selectedText = editor.getSelection()
 
 	if (!selectedText) {
 		new Notice('No text selected!')
 		return
 	}
+
+	// Cleanup the text
+	selectedText = selectedText.replace(/\[\[/g, '').replace(/\]\]/g, '')
 
 	if (!settings.awsAccessKeyId || !settings.awsSecretAccessKey) {
 		new Notice('AWS keys are not set! Go to Polyglot settings to set them')

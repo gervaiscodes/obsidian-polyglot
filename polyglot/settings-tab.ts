@@ -98,5 +98,41 @@ export default class SettingTab extends PluginSettingTab {
 					this.plugin.settings.speechAppend = value
 					await this.plugin.saveSettings()
 				}))
+
+		new Setting(containerEl)
+			.setName('Translate source language code')
+			.addText(text => text
+				.setValue(this.plugin.settings.translateSource)
+				.onChange(async (value) => {
+					this.plugin.settings.translateSource = value
+					await this.plugin.saveSettings()
+				}))
+
+		new Setting(containerEl)
+			.setName('Translate target language code')
+			.addText(text => text
+				.setValue(this.plugin.settings.translateTarget)
+				.onChange(async (value) => {
+					this.plugin.settings.translateTarget = value
+					await this.plugin.saveSettings()
+				}))
+
+		new Setting(containerEl)
+			.setName('Text to add before translated text')
+			.addTextArea(text => text
+				.setValue(this.plugin.settings.translatePrepend)
+				.onChange(async (value) => {
+					this.plugin.settings.translatePrepend = value
+					await this.plugin.saveSettings()
+				}))
+
+		new Setting(containerEl)
+			.setName('Text to add after translated text')
+			.addTextArea(text => text
+				.setValue(this.plugin.settings.translateAppend)
+				.onChange(async (value) => {
+					this.plugin.settings.translateAppend = value
+					await this.plugin.saveSettings()
+				}))
 	}
 }
