@@ -53,6 +53,12 @@ export default class Polyglot extends Plugin {
 			editorCallback: (editor, view) => textToSpeech(editor, this.settings, this.pollyClient)
 		})
 
+		this.addCommand({
+			id: 'polly-translate',
+			name: 'Translate text',
+			editorCallback: (editor, view) => translate(editor, this.settings, this.translateClient)
+		})
+
 		this.addSettingTab(new SettingTab(this.app, this))
 	}
 
