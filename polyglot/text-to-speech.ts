@@ -4,8 +4,14 @@ import { PollyClient, SynthesizeSpeechCommandInput } from '@aws-sdk/client-polly
 import { Editor, Notice } from 'obsidian'
 import { PolyglotSettings } from './settings'
 
-export default async function textToSpeech(editor: Editor, settings: PolyglotSettings, pollyClient: PollyClient) {
-	let selectedText = editor.getSelection()
+export default async function textToSpeech(editor: Editor, settings: PolyglotSettings, pollyClient: PollyClient, useClipboard: boolean) {
+	let selectedText
+
+	if(useClipboard) {
+		selectedText = await navigator.clipboard.readText()
+	} else {
+		selectedText = editor.getSelection()
+	}
 
 	if (!selectedText) {
 		new Notice('No text selected!')

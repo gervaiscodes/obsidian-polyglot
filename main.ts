@@ -34,7 +34,7 @@ export default class Polyglot extends Plugin {
 			const view = this.app.workspace.getActiveViewOfType(MarkdownView)
 
 			if (view) {
-				textToSpeech(view.editor, this.settings, this.pollyClient)
+				textToSpeech(view.editor, this.settings, this.pollyClient, false)
 			}
 		});
 
@@ -43,20 +43,20 @@ export default class Polyglot extends Plugin {
 			const view = this.app.workspace.getActiveViewOfType(MarkdownView)
 
 			if (view) {
-				translate(view.editor, this.settings, this.translateClient)
+				translate(view.editor, this.settings, this.translateClient, false)
 			}
 		});
 
 		this.addCommand({
 			id: 'polly-text-to-speech',
 			name: 'Convert text to speech',
-			editorCallback: (editor, view) => textToSpeech(editor, this.settings, this.pollyClient)
+			editorCallback: (editor, view) => textToSpeech(editor, this.settings, this.pollyClient, true)
 		})
 
 		this.addCommand({
 			id: 'polly-translate',
 			name: 'Translate text',
-			editorCallback: (editor, view) => translate(editor, this.settings, this.translateClient)
+			editorCallback: (editor, view) => translate(editor, this.settings, this.translateClient, true)
 		})
 
 		this.addSettingTab(new SettingTab(this.app, this))

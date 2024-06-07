@@ -2,8 +2,14 @@ import { TranslateClient, TranslateTextCommand } from '@aws-sdk/client-translate
 import { Editor, Notice } from 'obsidian'
 import { PolyglotSettings } from './settings'
 
-export default async function translate(editor: Editor, settings: PolyglotSettings, translateClient: TranslateClient) {
-	let selectedText = editor.getSelection()
+export default async function translate(editor: Editor, settings: PolyglotSettings, translateClient: TranslateClient, useClipboard: boolean) {
+	let selectedText
+
+	if(useClipboard) {
+		selectedText = await navigator.clipboard.readText()
+	} else {
+		selectedText = editor.getSelection()
+	}
 
 	if (!selectedText) {
 		new Notice('No text selected!')
