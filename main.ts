@@ -1,6 +1,6 @@
 import { MarkdownView, Plugin } from 'obsidian'
 import { PollyClient } from '@aws-sdk/client-polly'
-import { PolyglotSettings, DEFAULT_SETTINGS } from 'polyglot/settings'
+import { PolyglotSettings, DEFAULT_SETTINGS, ClipboardUse } from 'polyglot/settings'
 import SettingTab from 'polyglot/settings-tab'
 import textToSpeech from 'polyglot/text-to-speech'
 import translate from 'polyglot/translate'
@@ -34,7 +34,7 @@ export default class Polyglot extends Plugin {
 			const view = this.app.workspace.getActiveViewOfType(MarkdownView)
 
 			if (view) {
-				textToSpeech(view.editor, this.settings, this.pollyClient, false)
+				textToSpeech(view.editor, this.settings, this.pollyClient, ClipboardUse.No)
 			}
 		});
 
@@ -43,20 +43,20 @@ export default class Polyglot extends Plugin {
 			const view = this.app.workspace.getActiveViewOfType(MarkdownView)
 
 			if (view) {
-				translate(view.editor, this.settings, this.translateClient, false)
+				translate(view.editor, this.settings, this.translateClient, ClipboardUse.No)
 			}
 		});
 
 		this.addCommand({
 			id: 'polly-text-to-speech',
 			name: 'Convert text to speech',
-			editorCallback: (editor, view) => textToSpeech(editor, this.settings, this.pollyClient, true)
+			editorCallback: (editor, view) => textToSpeech(editor, this.settings, this.pollyClient, ClipboardUse.Yes)
 		})
 
 		this.addCommand({
 			id: 'polly-translate',
 			name: 'Translate text',
-			editorCallback: (editor, view) => translate(editor, this.settings, this.translateClient, true)
+			editorCallback: (editor, view) => translate(editor, this.settings, this.translateClient, ClipboardUse.Yes)
 		})
 
 		this.addSettingTab(new SettingTab(this.app, this))

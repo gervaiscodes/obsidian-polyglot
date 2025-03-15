@@ -26,3 +26,7 @@ export const DEFAULT_SETTINGS: PolyglotSettings = {
 	translateAppend: ''
 }
 
+export enum ClipboardUse {
+	Yes,
+	No
+}

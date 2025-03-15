@@ -2,12 +2,12 @@ import { getSynthesizeSpeechUrl, PresignedPollyInput } from '@aws-sdk/polly-requ
 import { fileNameCompatibleDate } from 'polyglot/utils'
 import { PollyClient, SynthesizeSpeechCommandInput } from '@aws-sdk/client-polly'
 import { Editor, Notice } from 'obsidian'
-import { PolyglotSettings } from './settings'
+import { PolyglotSettings, ClipboardUse } from './settings'
 
-export default async function textToSpeech(editor: Editor, settings: PolyglotSettings, pollyClient: PollyClient, useClipboard: boolean) {
+export default async function textToSpeech(editor: Editor, settings: PolyglotSettings, pollyClient: PollyClient, clipboardUse: ClipboardUse) {
 	let selectedText
 
-	if(useClipboard) {
+	if (clipboardUse === ClipboardUse.Yes) {
 		selectedText = await navigator.clipboard.readText()
 	} else {
 		selectedText = editor.getSelection()
