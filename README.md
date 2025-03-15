@@ -1,47 +1,48 @@
 # Obsidian Polyglot
 
-- Translate selected text in one click using AWS Translate
-- Convert selected text to a local audio file in one click using AWS Polly
+**Obsidian Polyglot** is a plugin that enables translation and text-to-speech conversion within Obsidian.
 
-## How to Use
+- 🌍 **Instant Translation**: Translate selected text in one click using **AWS Translate**
+- 🔊 **Text-to-Speech Conversion**: Convert selected text into a local audio file using **AWS Polly**
 
-### Install the plugin
+## 🚀 Installation
 
-Clone the repo in `.obsidian/plugins`
+1. **Clone the repository** into your Obsidian plugins folder: `.obsidian/plugins`
+1. **Enable the plugin** in Obsidian settings.
 
-Enable the plugin.
-
-Two icons will be added to the ribbon sidebar:
+Once activated, two icons will be added to the ribbon sidebar:
 
 ![Ribbon](./images/ribbon.png)
 
-Two commands will also be added:
+Additionally, two new commands will be available:
 
 ![Commands](./images/commands.png)
 
-### Configure the plugin
+## ⚙️ Configuration
 
-Fill your AWS credentials and languages that you want to use in the settings panel:
+Before using the plugin, configure your **AWS credentials** and **preferred languages** in the settings panel:
 
 ![Settings](./images/settings.png)
 
-## Translate text
+## 🌐 Translate Text
 
-Select the text that you want to translate and click the "Polyglot Translate" icon.
+1. **Select the text** you want to translate.
+2. Click the **"Polyglot Translate"** icon in the ribbon.
+3. The translated text will appear directly after your selection.
 
-The translation will be added right after your selected text. You can append or prepend text to the translation in the settings.
+You can customize the translation output (e.g., append/prepend text) in the settings.
 
-## Convert text to voice
+## 🔊 Convert Text to Speech
 
-Select the text that you want to translate and click the "Polyglot Speech" icon.
+1. **Select the text** you want to convert to speech.
+2. Click the **"Polyglot Speech"** icon in the ribbon.
+3. The generated audio file will be added right after your selected text.
 
-The audio file will be added right after your selected text. You can append or prepend text to the file in the settings.
+📌 **Offline Support**: The audio file is stored locally, meaning no internet connection is required to play it.
 
-The audio file is stored localy, this means your don't need internet connection to play the files.
+## 📌 Example Usage
 
-## Example
-
-Here is an example of the polish word "cześć" translated to "salut" in french:
+Here’s an example of the Polish word **"cześć"** translated to **"salut"** in French:
 
 ![Example editor](./images/example-editor.png)
 
