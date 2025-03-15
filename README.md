@@ -8,7 +8,8 @@
 ## 🚀 Installation
 
 1. **Clone the repository** into your Obsidian plugins folder: `.obsidian/plugins`
-1. **Enable the plugin** in Obsidian settings.
+2. **Build the plugin**: `npm run build`
+3. **Enable the plugin** in Obsidian settings.
 
 Once activated, two icons will be added to the ribbon sidebar:
 
