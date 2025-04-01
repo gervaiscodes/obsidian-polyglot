@@ -1,15 +1,15 @@
-import { MarkdownView, Plugin } from 'obsidian'
-import { PollyClient } from '@aws-sdk/client-polly'
-import { PolyglotSettings, DEFAULT_SETTINGS, ClipboardUse } from 'polyglot/settings'
-import SettingTab from 'polyglot/settings-tab'
-import textToSpeech from 'polyglot/text-to-speech'
-import translate from 'polyglot/translate'
-import { TranslateClient } from '@aws-sdk/client-translate'
+import { MarkdownView, Plugin } from 'obsidian';
+import { PollyClient } from '@aws-sdk/client-polly';
+import { PolyglotSettings, DEFAULT_SETTINGS, ClipboardUse } from 'polyglot/settings';
+import SettingTab from 'polyglot/settings-tab';
+import textToSpeech from 'polyglot/text-to-speech';
+import translate from 'polyglot/translate';
+import { TranslateClient } from '@aws-sdk/client-translate';
 
 export default class Polyglot extends Plugin {
-	settings: PolyglotSettings
-	pollyClient: PollyClient
-	translateClient: TranslateClient
+	settings: PolyglotSettings;
+	pollyClient: PollyClient;
+	translateClient: TranslateClient;
 
 	async onload() {
 		await this.loadSettings();
@@ -20,7 +20,7 @@ export default class Polyglot extends Plugin {
 				accessKeyId: this.settings.awsAccessKeyId,
 				secretAccessKey: this.settings.awsSecretAccessKey
 			},
-		})
+		});
 
 		this.translateClient = new TranslateClient({
 			region: this.settings.awsRegion,
@@ -28,22 +28,22 @@ export default class Polyglot extends Plugin {
 				accessKeyId: this.settings.awsAccessKeyId,
 				secretAccessKey: this.settings.awsSecretAccessKey
 			}
-		})
+		});
 
 		this.addRibbonIcon('speech', 'Polyglot Speech', (evt: MouseEvent) => {
-			const view = this.app.workspace.getActiveViewOfType(MarkdownView)
+			const view = this.app.workspace.getActiveViewOfType(MarkdownView);
 
 			if (view) {
-				textToSpeech(view.editor, this.settings, this.pollyClient, ClipboardUse.No)
+				textToSpeech(view.editor, this.settings, this.pollyClient, ClipboardUse.No);
 			}
 		});
 
 
 		this.addRibbonIcon('languages', 'Polyglot Translate', (evt: MouseEvent) => {
-			const view = this.app.workspace.getActiveViewOfType(MarkdownView)
+			const view = this.app.workspace.getActiveViewOfType(MarkdownView);
 
 			if (view) {
-				translate(view.editor, this.settings, this.translateClient, ClipboardUse.No)
+				translate(view.editor, this.settings, this.translateClient, ClipboardUse.No);
 			}
 		});
 
@@ -51,15 +51,15 @@ export default class Polyglot extends Plugin {
 			id: 'polly-text-to-speech',
 			name: 'Convert text to speech',
 			editorCallback: (editor, view) => textToSpeech(editor, this.settings, this.pollyClient, ClipboardUse.Yes)
-		})
+		});
 
 		this.addCommand({
 			id: 'polly-translate',
 			name: 'Translate text',
 			editorCallback: (editor, view) => translate(editor, this.settings, this.translateClient, ClipboardUse.Yes)
-		})
+		});
 
-		this.addSettingTab(new SettingTab(this.app, this))
+		this.addSettingTab(new SettingTab(this.app, this));
 	}
 
 	onunload() {
@@ -67,10 +67,10 @@ export default class Polyglot extends Plugin {
 	}
 
 	async loadSettings() {
-		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData())
+		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
 	}
 
 	async saveSettings() {
-		await this.saveData(this.settings)
+		await this.saveData(this.settings);
 	}
 }
